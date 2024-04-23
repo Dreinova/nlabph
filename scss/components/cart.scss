@@ -1,0 +1,16 @@
+.cart {
+  position: relative;
+  display: inline-block;
+  .cart-items {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #000;
+    min-width: 200px;
+    padding: 10px;
+    display: none;
+  }
+  &:hover .cart-items {
+    display: block;
+  }
+}

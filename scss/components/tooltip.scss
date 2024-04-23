@@ -1,0 +1,32 @@
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  &::before {
+    align-items: center;
+    background-color: #333;
+    border-radius: 4px;
+    bottom: 100%;
+    color: #fff;
+    content: attr(data-tooltip);
+    display: flex;
+    font-size: 12px;
+    justify-content: center;
+    left: 50%;
+    line-height: 12px;
+    opacity: 0;
+    padding: 8px;
+    position: absolute;
+    transform: translateX(-50%);
+    transition: opacity 0.3s ease-in-out;
+    visibility: hidden;
+    width: max-content;
+    @media only screen and (max-width: 768px) {
+      transform: translateX(0);
+    }
+  }
+  &:hover:before {
+    opacity: 1;
+    visibility: visible;
+  }
+}

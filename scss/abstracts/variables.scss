@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&display=swap");
+:root {
+  --font-primary: "Roboto Mono", monospace;
+  --font-secondary: "Roboto Mono", monospace;
+  --principal: #020202;
+  --background-principal: #fff;
+  --status-hover: #8afe2a;
+  --status-selected: #d4a0e9;
+  --complementary: #454cf5;
+  --6296C3: #6296c3;
+  --1B6844: #1b6844;
+  --9ACDA7: #9acda7;
+  --EAE62A: #eae62a;
+  --E2E1DF: #e2e1df;
+}
+
+.Trade {
+  font-family: var(--font-primary);
+}
+.Roboto {
+  font-family: var(--font-secondary);
+}

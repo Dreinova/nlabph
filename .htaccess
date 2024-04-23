@@ -1,0 +1,22 @@
+RewriteEngine On
+RewriteBase /cotizaciones/
+
+SetEnv username developer
+SetEnv password "k5N3 21nx 0ocX PIYj 7njm O8nM"
+
+# Check if the requested file or directory exists
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# Spanish URL rewriting
+RewriteRule ^s/([^/]+)/?$ set/$1.php?lang=es [L,QSA]
+RewriteRule ^g/([^/]+)/?$ get/$1.php?lang=es [L,QSA]
+RewriteRule ^b/([^/]+)/?$ boxes/$1.php?lang=es [L,QSA]
+
+
+RewriteRule ^admin/leads/?$ admin/index.php?active=0 [L,QSA]
+RewriteRule ^admin/crear-cotizacion/([0-9]+)?$ admin/create_prices.php?idLead=$1&active=1 [L,QSA]
+RewriteRule ^admin/editar-cotizacion/([0-9]+)?$ admin/edit_prices.php?idPrice=$1&active=1 [L,QSA]
+RewriteRule ^admin/listado-cotizaciones?$ admin/prices.php?active=1 [L,QSA]
+RewriteRule ^admin/items?$ admin/items.php?active=3 [L,QSA]
+RewriteRule ^admin/cotizacion-([0-9]+)?$ admin/view_prices.php?cotizacionId=$1 [L,QSA]

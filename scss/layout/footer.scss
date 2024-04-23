@@ -1,0 +1,24 @@
+footer {
+  background-color: #000;
+  .separador {
+    width: 38px;
+    height: 6px;
+    flex-shrink: 0;
+    background: var(--complemento, #454cf5);
+  }
+  ul {
+    li {
+      a {
+        color: #fff;
+      }
+    }
+  }
+}
+
+.bhrcredits {
+  div {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+}

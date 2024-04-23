@@ -1,0 +1,22 @@
+.pagination {
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  .pageNumbers {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  button {
+    padding: 5px 10px;
+    margin: 0 5px;
+    &.active,
+    &:hover {
+      font-weight: bold;
+      background: #ae78c5;
+      color: #fff;
+    }
+  }
+}

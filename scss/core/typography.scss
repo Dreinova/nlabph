@@ -1,0 +1,117 @@
+@use "../abstracts" as *;
+
+body {
+  font-size: 10px;
+  font-family: var(--font-primary);
+}
+
+h1 {
+  font-family: var(--font-secondary);
+  font-style: normal;
+  font-size: 32px;
+  line-height: 70px;
+  margin-bottom: 64px;
+  font-weight: bold;
+  @media only screen and (max-width: 768px) {
+    font-style: normal;
+    font-size: 22px;
+    line-height: 30px;
+    margin-bottom: 15px;
+    font-weight: bold;
+  }
+}
+
+h2 {
+  font-family: var(--font-secondary);
+  font-size: 36px;
+  font-style: normal;
+  line-height: 100%; /* 36px */
+  letter-spacing: 3.6px;
+  margin-bottom: 64px;
+  font-weight: bold;
+}
+
+h3 {
+  font-family: var(--font-primary);
+  font-size: 28px;
+  font-style: normal;
+  line-height: 100%; /* 28px */
+  letter-spacing: 2.8px;
+  margin-bottom: 64px;
+  font-weight: bold;
+}
+
+h4 {
+  font-family: var(--font-primary);
+  font-size: 24px;
+  font-style: normal;
+  line-height: 100%; /* 24px */
+  letter-spacing: 2.4px;
+  margin-bottom: 64px;
+  font-weight: bold;
+}
+h5 {
+  font-family: var(--font-primary);
+  font-size: 13px;
+  font-style: normal;
+  letter-spacing: -0.02em;
+  line-height: 30px;
+  margin-bottom: 64px;
+  font-weight: bold;
+}
+h6 {
+  font-family: var(--font-primary);
+  font-size: 10px;
+  font-style: normal;
+  letter-spacing: -0.02em;
+  line-height: 30px;
+  font-weight: bold;
+}
+
+p,
+li {
+  color: var(--principal);
+  font-family: var(--font-primary);
+  font-size: 12px;
+  font-style: normal;
+  line-height: 150%; /* 27px */
+  letter-spacing: 0.9px;
+}
+a {
+  color: var(--orangeText);
+  font-family: var(--font-primary);
+  font-size: 18px;
+  font-style: normal;
+  line-height: 100%;
+}
+
+small {
+  color: var(--principal);
+  font-family: var(--font-primary);
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.thin {
+  font-weight: 100;
+}
+.light {
+  font-weight: 300;
+}
+.medium {
+  font-weight: 500;
+}
+.semibold {
+  font-weight: 600;
+}
+.bold {
+  font-weight: 700;
+}
+.black {
+  font-weight: 900;
+}
+.uppercase {
+  text-transform: uppercase;
+}

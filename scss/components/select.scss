@@ -1,0 +1,73 @@
+.custom-select {
+  position: relative;
+  display: inline-block;
+  margin: 10px 0;
+  width: 100%;
+  color: #9d9d9d;
+  font-family: var(--font-primary);
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%; /* 18px */
+  letter-spacing: 2.5px;
+}
+
+.select-selected {
+  padding: 8px 16px;
+  border-bottom: 1px solid #000;
+  cursor: pointer;
+}
+
+.select-selected.select-arrow-active {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.select-items {
+  position: absolute;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.select-item {
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.select-item:hover {
+  background-color: #ddd;
+}
+
+select {
+  display: none;
+}
+
+/* Agregar una flecha hacia abajo al custom select */
+.select-selected:after {
+  content: "";
+  position: absolute;
+  top: 14px;
+  right: 10px;
+  border: 6px solid transparent;
+  border-top: 8px solid #000; /* Puedes cambiar el color de la flecha aquí */
+}
+
+/* Cambiar la flecha cuando el select se abre */
+.select-selected.select-arrow-active:after {
+  border-top: 0;
+  border-bottom: 8px solid #000; /* Puedes cambiar el color de la flecha aquí */
+  top: 10px;
+}
+
+.select-hide {
+  display: none;
+}

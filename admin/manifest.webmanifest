@@ -1,0 +1,43 @@
+{
+  "theme_color": "#000",
+  "background_color": "#000",
+  "display": "fullscreen",
+  "lang": "es",
+  "scope": "/cotizaciones/admin/",
+  "orientation": "portrait",
+  "start_url": "/cotizaciones/admin/",
+  "display_override": ["window-control-overlay", "standalone", "browser"],
+  "prefer_related_applications": false,
+  "related_applications": [],
+  "dir": "ltr",
+  "categories": ["Fotografia", "Rentals", "Equipos", "Audiovisual"],
+  "name": "nlabph",
+  "short_name": "nlabph",
+  "description": "",
+  "icons": [
+    {
+      "src": "/cotizaciones/admin/icons/icon-192x192.png",
+      "sizes": "193x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/cotizaciones/admin/icons/icon-256x256.png",
+      "sizes": "257x256",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/cotizaciones/admin/icons/icon-384x384.png",
+      "sizes": "385x384",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/cotizaciones/admin/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
