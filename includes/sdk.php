@@ -1,21 +1,24 @@
 <?php
-class SDK {
+class SDK
+{
     public $domain = "https://admin.nlabph.com/wp-json/wp/v2/";
     public $infoGnrl = array();
     public $language = "";
     public $production = true;
     public $palabras = array();
 
-    function __construct($language, $development = false){
+    function __construct($language, $development = false)
+    {
         $this->language = $language;
         if ($development) {
             $this->production = false;
         }
-    }  
+    }
 
-    public function reindexCache(){
+    public function reindexCache()
+    {
         $dirPath = "/home/uiumji3ay04q/public_html/cache";
-        if (! is_dir($dirPath)) {
+        if (!is_dir($dirPath)) {
             throw new InvalidArgumentException("$dirPath must be a directory");
         }
         if (substr($dirPath, strlen($dirPath) - 1, 1) != '/') {
@@ -32,7 +35,8 @@ class SDK {
         rmdir($dirPath);
         echo "Caché reiniciado";
     }
-    public function query($endpoint, $body = "", $method = "GET", $extra = [], $cache = false){
+    public function query($endpoint, $body = "", $method = "GET", $extra = [], $cache = false)
+    {
         $query = ['langcode' => $this->language];
         // Ruta donde se va a guardar todos los archivos de CACHE
         $cacheAbsoluteRoute = "/home3/newlab/public_html/garciarental/cotizaciones/cache";
@@ -55,23 +59,23 @@ class SDK {
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
-    
+
         // Set request body for POST and PUT methods
         if ($method === "POST" || $method === "PUT") {
             curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
         }
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
             'Content-Type: application/json',
-            'Authorization: Basic ZGV2ZWxvcGVyOms1TjMgMjFueCAwb2NYIFBJWWogN25qbSBPOG5N' 
+            'Authorization: Basic ZGV2ZWxvcGVyOms1TjMgMjFueCAwb2NYIFBJWWogN25qbSBPOG5N'
         ));
-    
+
         if ($cache) {
             $filetitle = $this->get_alias($url) . ".json";
             if (!file_exists($cacheAbsoluteRoute)) {
                 mkdir($cacheAbsoluteRoute, 0777, true);
             }
             $path = $cacheAbsoluteRoute . "/" . $filetitle;
-    
+
             if (file_exists($path)) {
                 $data = file_get_contents($path);
                 $ok = json_decode($data);
@@ -91,43 +95,60 @@ class SDK {
             return $request;
         }
     }
-    function getLeads($id = ""){
-        $result = $this->query("garcia-leads/$id");    
+    function getPalabras($language)
+    {
+        $palabras = $this->query("garcia-interfaz?field=idioma,interfaz&value=" . $language. ",Cotizaciones");
+        preg_match_all('/<p>(.*?)<\/p>/', $palabras[0]->content->rendered, $matches);
+        $texts = $matches[1];
+        $palabras = $texts;
+        return $palabras;
+    }
+
+    function getLeads($id = "")
+    {
+        $result = $this->query("garcia-leads/$id");
         return $result;
     }
-    function getGrupos($id = "",$search = ""){
+    function getGrupos($id = "", $search = "")
+    {
         $params = [];
-        if(isset($search)){
+        if (isset($search)) {
             $params = ['search' => $search];
         }
-        $result = $this->query("garcia-grupos/$id", "", "GET", $params);    
+        $result = $this->query("garcia-grupos/$id", "", "GET", $params);
         return $result;
     }
-    function getServices($id = "",$search = ""){
+    function getServices($id = "", $search = "")
+    {
         $params = [];
-        if(isset($search)){
+        if (isset($search)) {
             $params = ['search' => $search];
         }
-        $result = $this->query("garcia-services/$id", "", "GET", $params);    
+        $result = $this->query("garcia-services/$id", "", "GET", $params);
         return $result;
     }
-    function getPrices($id = ""){
-        $result = $this->query("garcia-price/$id");    
+    function getPrices($id = "")
+    {
+        $result = $this->query("garcia-price/$id");
         return $result;
     }
-    function getSellers(){
-        $result = $this->query("garcia-sellers");    
+    function getSellers()
+    {
+        $result = $this->query("garcia-sellers");
         return $result;
     }
-    function getPrice($id){
-        $result = $this->query("garcia-price/".$id);    
+    function getPrice($id)
+    {
+        $result = $this->query("garcia-price/" . $id);
         return $result;
     }
-    function setPrice($data){
-        $result = $this->query("garcia-price", $data, "POST");    
+    function setPrice($data)
+    {
+        $result = $this->query("garcia-price", $data, "POST");
         return $result;
     }
-    function get_alias($String){
+    function get_alias($String)
+    {
         $String = html_entity_decode($String); // Traduce codificación
         $String = str_replace("¡", "", $String); //Signo de exclamación abierta.&iexcl;
         $String = str_replace("'", "", $String); //Signo de exclamación abierta.&iexcl;
