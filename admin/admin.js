@@ -788,12 +788,49 @@ function getPrices() {
       console.error("Error getPrices()", err);
     });
 }
+async function queryWP(
+  endpoint,
+  body = "",
+  method = "GET",
+  extra = [],
+  cache = false
+) {
+  let query = { langcode: this.language };
+  // Ruta donde se va a guardar todos los archivos de CACHE
+  const cacheAbsoluteRoute =
+    "/home3/newlab/public_html/garciarental/cotizaciones/cache";
+  // Validación de la variable $extra para colocar queryParams en el ENDPOINT
+  if (extra.length > 0) {
+    const extraParams = {};
+    extra.forEach((param) => {
+      const [key, value] = param.split("=");
+      extraParams[key] = value;
+    });
+    query = { ...query, ...extraParams };
+  }
+  
+  const queryString = new URLSearchParams(query).toString();
+  const url = `https://admin.nlabph.com/wp-json/wp/v2/${endpoint}?${queryString}`;
+  const options = {
+    method: method,
+    headers: {
+      "Content-Type": "application/json"
+    },
+  };
+  if (method === "POST" || method === "PUT") {
+    options.body = JSON.stringify(body);
+  }
+    const response = await fetch(url, options);
+    return await response.json();
+  
+}
+
 // GET ITEMS WP
 function getItems(page) {
   const tableTbody = document.querySelector("#items tbody");
 
   tableTbody.classList.add("loading");
-  const { result } = query(`garcia-equipos?per_page=${perPage}&page=${page}`);
+  const { result } = queryWP(`garcia-equipos?per_page=${perPage}&page=${page}`);
 
   tableTbody.innerHTML = ""; // Limpiar la tabla antes de llenarla con nuevos datos
 
@@ -1158,7 +1195,10 @@ function getSinglePrice(idPrice) {
           formas_de_pago,
           equipos: equipos.map((eq) => eq.equipo).flat(),
           dias_standby: dias_standby.map((dias) => dias.fecha_stand_by),
-          viajes: viajes.map(viaje => ( { date: viaje.fecha_viaje, destination: viaje.destino })),
+          viajes: viajes.map((viaje) => ({
+            date: viaje.fecha_viaje,
+            destination: viaje.destino,
+          })),
         };
       }
     )
@@ -1640,10 +1680,10 @@ const realTotalDaysInputtravels = document.querySelector(
 );
 
 const increaseTravels = (travelsArray) => {
-  realTotalDaysInputtravels
+  realTotalDaysInputtravels;
   let valueDays = parseFloat(document.getElementById("totaldays").value);
   document.getElementById("totaldays").value = valueDays + 0.5;
- 
+
   document
     .querySelectorAll(".admin main .itemList li .daysTotal input")
     .forEach((el, i) => {
@@ -1959,16 +1999,15 @@ async function getEquiposCotizacion() {
 
     if (list_items) {
       for (const element of list_items) {
-        itemQueries.push(query(`garcia-equipos/${element.items.item[0].ID}`));
+        itemQueries.push(queryWP(`garcia-equipos/${element.items.item[0].ID}`));
       }
     }
     // Esperar a que todas las consultas de elementos individuales se completen
     const itemResponses = await Promise.all(itemQueries);
     let listaHTML = "";
     for (const [index, responsePromise] of itemResponses.entries()) {
-      const { result } = await responsePromise;
-      const responseItems = await result;
-      listaHTML += `<li><p>${responseItems.acf.nombre_item}</p><small>x${list_items[index].items.cantidad}</small></li>`;
+      const result  = await responsePromise;
+      listaHTML += `<li><p>${result.acf.nombre_item}</p><small>x${list_items[index].items.cantidad}</small></li>`;
     }
     const descuento = parseFloat(item.descuento);
     const dias = parseFloat(item.dias);
