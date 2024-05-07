@@ -61,7 +61,7 @@ function convertDate($dateString)
     <img src="images/garcia.svg" alt="garcia">
     <img src="images/beyond.png" alt="beyond">
     <div class="right">
-        <h1><?= $palabras[0] ?></h1>
+        <h1>Cotización</h1>
         <h2><?= $_GET["cotizacionId"] ?>-<?= isset($price->acf->version) && $price->acf->version != "" ? $price->acf->version : "1" ?></h2>
         <h3>
             <?php
