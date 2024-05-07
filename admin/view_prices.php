@@ -44,7 +44,7 @@ function convertDate($dateString)
 {
     $date = DateTime::createFromFormat('d/m/Y', $dateString);
     // Format day and month
-    $dayMonth = $date->format('d / m');
+    $dayMonth = $date->format('d/m');
     $year = $date->format('y');
     // Return the converted date
     return '<div class="date"><strong>' . $dayMonth . '</strong><p>/' . $year . '</p></div>';
@@ -135,41 +135,45 @@ function convertDate($dateString)
             <p>Se entrega el equipo en las instalaciones de NEW LAB PHOTOGRAPHY SAS en la calle 108 # 16 - 60 apto 406 a la 1:00 pm. Momento en el cual se firma el acta de entrega.</p>
         </div> -->
         <?php if (isset($viajes)) { ?>
-            <div class="viajes">
-                <h4>VIAJES</h4>
-                <?php
-                for ($i = 0; $i < count($viajes); $i++) {
-                    $fecha_viaje = $viajes[$i]->fecha_viaje;
-                    $destino = $viajes[$i]->destino;
-                    $tipo_de_viaje = $viajes[$i]->tipo_de_viaje;
-                ?>
-                    <div class="flex">
-                        <p><?= $destino ?></p>
-                        <strong><?= $fecha_viaje ?></strong>
-                        <?php if ($tipo_de_viaje == "terrestre") { ?>
-                            <img src="images/terrestre.svg" alt="terrestre">
-                        <?php } else { ?>
-                            <img src="images/aereo.svg" alt="aereo">
-                        <?php } ?>
-                    </div>
-                <?php } ?>
-            </div>
+            <?php if (count($viajes) > 0) { ?>
+                <div class="viajes">
+                    <h4>VIAJES</h4>
+                    <?php
+                    for ($i = 0; $i < count($viajes); $i++) {
+                        $fecha_viaje = $viajes[$i]->fecha_viaje;
+                        $destino = $viajes[$i]->destino;
+                        $tipo_de_viaje = $viajes[$i]->tipo_de_viaje;
+                    ?>
+                        <div class="flex">
+                            <p><?= $destino ?></p>
+                            <strong><?= $fecha_viaje ?></strong>
+                            <?php if ($tipo_de_viaje == "terrestre") { ?>
+                                <img src="images/terrestre.svg" alt="terrestre">
+                            <?php } else { ?>
+                                <img src="images/aereo.svg" alt="aereo">
+                            <?php } ?>
+                        </div>
+                    <?php } ?>
+                </div>
+            <?php } ?>
         <?php } ?>
         <?php if (isset($dias_standby)) { ?>
-            <div class="info-txt">
-                <h3 class="uppercase">stand by</h3>
-                <?php
-                for ($i = 0; $i < count($dias_standby); $i++) {
-                    $count = $i + 1;
-                    $fecha = $dias_standby[$i]->fecha_stand_by;
-                    $date = new DateTime($fecha);
-                    $monthName = $spanishMonth[$date->format('F')];
-                    $day = $date->format('j');
-                    $year = $date->format('Y');
-                    echo "<p style='margin-bottom: 14px;'>Día de Stand by $count :  $day de $monthName del $year</p>";
-                }
-                ?>
-            </div>
+            <?php if(count($dias_standby) > 0){ ?>
+                <div class="info-txt">
+                    <h3 class="uppercase">stand by</h3>
+                    <?php
+                    for ($i = 0; $i < count($dias_standby); $i++) {
+                        $count = $i + 1;
+                        $fecha = $dias_standby[$i]->fecha_stand_by;
+                        $date = new DateTime($fecha);
+                        $monthName = $spanishMonth[$date->format('F')];
+                        $day = $date->format('j');
+                        $year = $date->format('Y');
+                        echo "<p style='margin-bottom: 14px;'>Día de Stand by $count :  $day de $monthName del $year</p>";
+                    }
+                    ?>
+                </div>
+            <?php } ?>
         <?php } ?>
         <!-- <div class="info-txt">
             <h3 class="uppercase">REGRESO EQUIPOS</h3>
@@ -196,12 +200,8 @@ function convertDate($dateString)
                     <small>Berlín</small>
                 </li>
                 <li>
-                    <p>
-                        Hernan Avelino
-                    </p>
-                    <small>
-                        COO
-                    </small>
+                    <p>Hernan Avelino</p>
+                    <small>COO</small>
                     <small>
                         hernanavelino.coo@garciarental.co
                     </small>
@@ -225,210 +225,18 @@ function convertDate($dateString)
         </div>
         <div class="politics">
             <details open>
-                <summary>RESPONSABILIDAD Y SEGURO <img src="images/arrow.svg" alt="arrow"> <small>LETRA PEQUEÑA</small>
-                </summary>
-                <div class="content">
-
-                    <p>El CLIENTE asume como una obligación adicional la custodia y cuidado del equipo entregado bajo
-                        este
-                        contrato
-                        y que permanezca en su posesión, de manera que cualquier daño al mismo será su responsabilidad
-                        completa,
-                        exclusiva y objetiva. El CLIENTE asumirá de inmediato el pago de los gastos generados por
-                        cualquier
-                        daño
-                        o
-                        avería del equipo, incluyendo los costos de un reemplazo temporal para cubrir los días en que el
-                        equipo
-                        esté
-                        fuera de servicio, el costo de adquirir un nuevo equipo, los gastos de reparación (esto aplica
-                        solo
-                        si
-                        el
-                        proceso de reparación no afecta la calidad del equipo), impuestos, flete, importación,
-                        transporte y
-                        costos
-                        similares derivados del daño o avería del equipo o de su reparación. El CLIENTE tendrá la
-                        obligación
-                        de
-                        asegurar el equipo alquilado en un seguro específico y a nombre de NEW LAB PHOTOGRAPHY S.A.S.,
-                        en el
-                        cual
-                        esté asegurado y sea beneficiario por una suma igual al valor de adquisición en el mercado en el
-                        momento
-                        del
-                        alquiler y durante el plazo del alquiler, incluyendo los días de transporte para la entrega y
-                        recepción.
-                        El
-                        mencionado seguro debe contratarse antes de la entrega del equipo por parte de NEW LAB
-                        PHOTOGRAPHY
-                        S.A.S., y
-                        por lo tanto, esta será una condición para que se realice la entrega. Si en el momento de la
-                        pérdida
-                        NEW
-                        LAB
-                        PHOTOGRAPHY S.A.S. posee un seguro que cubre el daño del equipo (lo cual no será su obligación),
-                        el
-                        CLIENTE
-                        pagará todos los valores que por cualquier motivo el asegurador no indemnice, sin que esto
-                        implique
-                        una
-                        renuncia a los derechos y acciones de NEW LAB PHOTOGRAPHY S.A.S. para efectos de subrogación.
-                    </p>
-                </div>
+                <summary>RESPONSABILIDAD Y SEGURO <img src="images/arrow.svg" alt="arrow"> <small>LETRA PEQUEÑA</small></summary>
+                <div class="content"></div>
             </details>
             <details open>
                 <summary>CONDICIONES DE ALQUILER CONOCIDAS, ACEPTADAS Y ASUMIDAS POR EL CLIENTE <img src="images/arrow.svg" alt="arrow"></summary>
-                <div class="content">
-                    <p>* El CLIENTE designa y delega al PERSONAL CONTRATADO POR LA PRODUCCIÓN la recepción del equipo de
-                        alquiler y
-                        autoriza al delegado a firmar los documentos relacionados con el alquiler, como indicación de
-                        aceptación. *
-                        Al aprobar esta Cotización y utilizar los servicios de alquiler ofrecidos en ella, EL CLIENTE
-                        acepta
-                        las
-                        CONDICIONES DE ALQUILER. * Validez de la cotización: 5 días, sujeta a disponibilidad del equipo.
-                        *
-                        Los
-                        montos descritos en esta Cotización NO INCLUYEN IVA y se añadirán en la factura. *El CLIENTE se
-                        compromete a
-                        pagar los montos descritos en esta cotización. *El PERÍODO DE ALQUILER de los bienes y equipos
-                        incluidos
-                        en
-                        esta cotización comienza en el momento en que salen de las instalaciones de NEW LAB PHOTOGRAPHY
-                        SAS
-                        ubicadas
-                        en la calle 108 # 16-08 int. 406, Bogotá (Colombia) y finaliza en el momento en que se devuelven
-                        en
-                        buen
-                        estado a las mismas instalaciones. * EL CLIENTE (EL PRODUCTOR) acepta y asume la plena
-                        responsabilidad
-                        del
-                        equipo (este valor corresponde al valor de reemplazo por un equipo nuevo) desde el momento en
-                        que
-                        sale
-                        de
-                        las instalaciones de NEW LAB PHOTOGRAPHY SAS ubicadas en la Calle 108 # 16-08 int. 406, Bogotá
-                        (Colombia)
-                        hasta su devolución en buen estado a las mismas instalaciones. * EL CLIENTE es responsable de
-                        cualquier
-                        pérdida o daño causado al equipo o a terceros, independientemente de la cobertura proporcionada
-                        por
-                        la
-                        compañía de seguros. * El equipo se entrega en perfectas condiciones de funcionamiento y debe
-                        ser
-                        probado
-                        antes de su salida de las instalaciones de NEW LAB PHOTOGRAPHY SAS por el personal técnico
-                        designado
-                        y
-                        contratado por EL CLIENTE. * En caso de que algún equipo sufra daños durante el tiempo a cargo y
-                        bajo la
-                        responsabilidad del CLIENTE, por motivos atribuibles al mal manejo o a las condiciones de uso o
-                        almacenamiento a las que esté expuesto el equipo, EL CLIENTE acepta y asume el pago de su
-                        reparación
-                        y
-                        el
-                        valor de los días de alquiler en los que el equipo permanezca fuera de servicio. La
-                        participación de
-                        delegados de NEW LAB PHOTOGRAPHY S.A.S. en la entrega y recepción del equipo, o en cualquier
-                        momento
-                        durante
-                        el período de alquiler, no exime ni exonera al CLIENTE de las responsabilidades adquiridas en
-                        este
-                        contrato.
-                        * En caso de que algún equipo no sea devuelto a la casa de alquiler al finalizar el período de
-                        alquiler,
-                        se
-                        seguirá cobrando el valor diario de alquiler hasta el momento de su devolución a nuestras
-                        oficinas o
-                        hasta
-                        que el equipo sea reemplazado a expensas del CLIENTE. * En caso de que un equipo no pueda
-                        funcionar
-                        debido a
-                        un mal funcionamiento en el momento de su uso y no pueda ser reemplazado, la casa de alquiler no
-                        cobrará
-                        el
-                        valor diario cotizado. * El CLIENTE comprende y acepta que la casa de alquiler no tiene ninguna
-                        responsabilidad y no asumirá ningún costo o daño incurrido por la producción debido a fallas en
-                        el
-                        equipo o
-                        al personal encargado de su manejo. * No existe una relación laboral entre el personal técnico
-                        encargado
-                        del
-                        equipo y NEW LAB PHOTOGRAPHY SAS. * El personal técnico, independientemente de si son
-                        remunerados
-                        por
-                        NEW
-                        LAB PHOTOGRAPHY S.A.S. por conveniencia del CLIENTE, sigue las instrucciones y horarios
-                        designados
-                        por
-                        EL
-                        CLIENTE en su producción, y actúa bajo los riesgos y condiciones de trabajo determinados por EL
-                        CLIENTE.
-                        *
-                        EL CLIENTE acepta y asume la responsabilidad por cualquier evento que pueda ocurrir al personal
-                        técnico
-                        y/o
-                        al equipo a su cargo, así como cualquier reclamo laboral que el personal técnico presente ante
-                        las
-                        autoridades competentes. * La Casa de Alquiler puede retirar el equipo y devolverlo a sus
-                        instalaciones
-                        en
-                        caso de no recibir el pago en la fecha indicada en esta cotización. * EL CLIENTE acepta que NEW
-                        LAB
-                        PHOTOGRAPHY S.A.S. no está obligado a reemplazar total o parcialmente el equipo o sus partes en
-                        caso
-                        de
-                        daño
-                        (aparte de las responsabilidades del CLIENTE en caso de daño al equipo en sí). NEW LAB
-                        PHOTOGRAPHY
-                        S.A.S.
-                        puede obtener el reemplazo y suscribir un nuevo alquiler del equipo con sus propias partes o
-                        partes
-                        subarrendadas, pero su falta de provisión o suministro a EL CLIENTE no implicará un
-                        incumplimiento
-                        de su
-                        obligación, teniendo en cuenta que su reemplazo es un asunto que depende de la disponibilidad
-                        del
-                        equipo
-                        de
-                        NEW LAB PHOTOGRAPHY S.A.S. y del mercado de alquiler de equipos cinematográficos. Para que NEW
-                        LAB
-                        PHOTOGRAPHY S.A.S. proporcione la garantía de reemplazo de equipo o partes para su alquiler, se
-                        requerirá un
-                        acuerdo expreso y particular entre las partes que defina la remuneración correspondiente.</p>
-                </div>
+                <div class="content"></div>
             </details>
             <details open>
                 <summary>NORMAS APLICABLE Y ARBITRAJE <img src="images/arrow.svg" alt="arrow"></summary>
-                <div class="content">
-                    <p>La relación legal contractual derivada de la aceptación de esta oferta se regirá por las normas
-                        legales
-                        colombianas que regulan la materia. Las disputas surgidas en relación con el contrato se
-                        resolverán
-                        mediante
-                        un tribunal de arbitraje internacional compuesto por un árbitro de la lista internacional del
-                        Centro
-                        de
-                        Arbitraje de la Cámara de Comercio de Bogotá (Colombia), el mismo centro que será el lugar del
-                        tribunal
-                        y
-                        cuyas reglas serán aplicables a su procedimiento. Los honorarios y gastos del proceso de
-                        arbitraje
-                        serán
-                        la
-                        mitad de la tarifa del Centro de Arbitraje, independientemente del monto de la disputa. NEW LAB
-                        PHOTOGRAPHY
-                        S.A.S. se reserva el derecho de acudir directamente (sin la aplicación de esta cláusula de
-                        arbitraje) al
-                        respectivo proceso judicial para la cobranza ejecutiva de las facturas que se emitan como
-                        títulos
-                        valores
-                        derivados de esta relación para ser cobrados en el domicilio del CLIENTE.</p>
-                </div>
+                <div class="content"></div>
             </details>
         </div>
-        <small class="uppercase">NEW LAB PHOTOGRAPHY SAS · Nit. 900.338.551-3</small>
     </div>
     <div class="right <?= count($formas_de_pago) >= 2 ? "noFixed" : "" ?>">
         <div class="resumen">

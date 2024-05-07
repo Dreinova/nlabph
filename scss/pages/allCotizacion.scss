@@ -60,9 +60,10 @@
         font-family: Roboto Mono;
         font-size: 24px;
         font-style: normal;
-        font-weight: 400;
+        font-weight: bold;
         line-height: 100%; /* 24px */
-        letter-spacing: 6px;
+        text-transform: uppercase;
+        
       }
       h2 {
         color: #111;
@@ -70,9 +71,9 @@
         font-family: Roboto Mono;
         font-size: 64px;
         font-style: normal;
-        font-weight: 500;
+        font-weight: bold;
         line-height: 100%; /* 64px */
-        letter-spacing: 16px;
+        
       }
       h3 {
         color: #111;
@@ -80,9 +81,9 @@
         font-family: Roboto Mono;
         font-size: 18px;
         font-style: normal;
-        font-weight: 400;
+        font-weight: bold;
         line-height: 100%; /* 18px */
-        letter-spacing: 4.5px;
+        
       }
     }
   }
@@ -113,7 +114,7 @@
         padding: 5px 0;
         font-weight: 300;
         line-height: 100%; /* 14px */
-        letter-spacing: 3.5px;
+        
         display: flex;
         align-items: center;
         h2 {
@@ -138,7 +139,7 @@
           font-style: normal;
           font-weight: 300;
           line-height: 100%; /* 13px */
-          letter-spacing: 3.25px;
+          
         }
         input {
           color: #111;
@@ -148,7 +149,7 @@
           font-style: normal;
           font-weight: 400;
           line-height: 100%; /* 18px */
-          letter-spacing: 4.5px;
+          
         }
       }
       strong {
@@ -158,7 +159,7 @@
         font-style: normal;
         font-weight: 500;
         line-height: 100%; /* 14px */
-        letter-spacing: 3.5px;
+        
       }
       .options {
         padding: 0 30px;
@@ -188,7 +189,7 @@
             font-style: normal;
             font-weight: 400;
             line-height: 100%; /* 14px */
-            letter-spacing: 3.5px;
+            
             position: absolute;
             top: 80px;
             left: -70px;
@@ -201,7 +202,7 @@
             font-style: normal;
             font-weight: 300;
             line-height: 100%; /* 12px */
-            letter-spacing: 3px;
+            
           }
           .discount {
             color: #111;
@@ -211,7 +212,7 @@
             font-style: normal;
             font-weight: 500;
             line-height: 100%; /* 16px */
-            letter-spacing: 4px;
+            
           }
           .price {
             display: flex;
@@ -228,7 +229,7 @@
               font-style: normal;
               font-weight: 500;
               line-height: 100%; /* 24px */
-              letter-spacing: 6px;
+              
             }
             svg {
               position: absolute;
@@ -248,7 +249,7 @@
             font-style: normal;
             font-weight: 400;
             line-height: 100%; /* 12px */
-            letter-spacing: 3px;
+            
             border: 1px solid #000;
             background: var(--principal-light, #fff);
             transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
@@ -300,7 +301,7 @@
     display: grid;
     grid-template-columns: repeat(2, 295px);
     max-width: 615px;
-    gap: 62px;
+    gap: 40px 20px;
     margin-bottom: 114px;
     @media only screen and (max-width: 768px) {
       grid-template-columns: 1fr;
@@ -329,7 +330,7 @@
       font-style: normal;
       font-weight: 500;
       line-height: 100%;
-      letter-spacing: 6px;
+      
     }
     p {
       color: #040404;
@@ -337,8 +338,11 @@
       font-size: 12px;
       font-style: normal;
       line-height: normal;
-      letter-spacing: 3px;
+      
     }
+  }
+  span{
+    gap: 0;
   }
   label {
     color: #040404;
@@ -349,7 +353,7 @@
     line-height: 100%; /* 13px */
     padding: 0;
     margin: 0;
-    letter-spacing: 3.25px;
+    
   }
   input {
     color: #040404;
@@ -358,7 +362,7 @@
     font-style: normal;
     font-weight: 400;
     line-height: 100%; /* 16px */
-    letter-spacing: 4px;
+    
     border: 0;
     padding: 0;
     margin: 0;
@@ -370,7 +374,7 @@
     font-style: normal;
     font-weight: 500;
     line-height: 100%;
-    letter-spacing: 6px;
+    
   }
   .shake-vertical {
     -webkit-animation: shake-vertical 3s cubic-bezier(0.455, 0.03, 0.515, 0.955)
@@ -450,8 +454,7 @@
   .cronograma {
     display: flex;
     align-items: center;
-    margin-bottom: 64px;
-    flex-wrap: wrap;
+    margin-bottom: 30px;
     @media only screen and (max-width: 768px) {
       flex-direction: column;
       align-items: flex-start;
@@ -470,21 +473,19 @@
         font-style: normal;
         font-weight: 400;
         line-height: 100%;
-        letter-spacing: 3px;
+        
       }
       .date {
         display: flex;
-        align-items: center;
-        justify-content: center;
         gap: 15px;
         p {
           color: #040404;
           font-family: Roboto Mono;
-          font-size: 22px;
+          font-size: 20px;
           font-style: normal;
           font-weight: 500;
           line-height: 100%; /* 12px */
-          letter-spacing: 3px;
+          
         }
         strong {
           color: #111;
@@ -494,7 +495,7 @@
           font-style: normal;
           font-weight: 500;
           line-height: 100%; /* 64px */
-          letter-spacing: -9.92px;
+          
         }
       }
     }
@@ -519,7 +520,7 @@
         font-weight: 300;
         width: 30%;
         line-height: 100%; /* 12px */
-        letter-spacing: 3px;
+        
       }
       strong {
         color: #040404;
@@ -528,7 +529,7 @@
         font-style: normal;
         font-weight: 500;
         line-height: 100%; /* 12px */
-        letter-spacing: 3px;
+        
       }
       img {
         width: 17px;
@@ -544,7 +545,7 @@
     font-style: normal;
     font-weight: 300;
     line-height: 100%; /* 20px */
-    letter-spacing: 5px;
+    
   }
   h6 {
     color: #040404;
@@ -554,7 +555,7 @@
     margin-bottom: 30px;
     font-weight: 700;
     line-height: 100%; /* 24px */
-    letter-spacing: 6px;
+    
   }
   details {
     transition: max-height 0.3s ease-in-out;
@@ -596,7 +597,7 @@
         font-style: normal;
         font-weight: 400;
         line-height: 100%; /* 14px */
-        letter-spacing: 3.5px;
+        
         position: absolute;
         top: 45px;
         left: -65px;
@@ -613,7 +614,7 @@
         font-style: normal;
         font-weight: 400;
         line-height: 100%; /* 20px */
-        letter-spacing: 5px;
+        
       }
       ul {
         margin: 50px 0;
@@ -630,7 +631,7 @@
             font-style: normal;
             font-weight: 400;
             line-height: 100%; /* 14px */
-            letter-spacing: 3.5px;
+            
           }
           small {
             color: #040404;
@@ -639,7 +640,7 @@
             font-style: normal;
             font-weight: 500;
             line-height: 100%; /* 12px */
-            letter-spacing: 3px;
+            
           }
         }
       }
@@ -664,7 +665,7 @@
           font-weight: 300;
           line-height: 100%; /* 13px */
           max-width: 240px;
-          letter-spacing: 3.25px;
+          
         }
         input {
           color: #7a7a7a;
@@ -673,7 +674,7 @@
           font-style: normal;
           font-weight: 400;
           line-height: 100%; /* 20px */
-          letter-spacing: 5px;
+          
           max-width: 240px;
           text-align: right;
           width: 100%;
@@ -685,7 +686,7 @@
             font-style: normal;
             font-weight: 500;
             line-height: 100%; /* 20px */
-            letter-spacing: 5px;
+            
           }
         }
         .discount {
@@ -711,7 +712,7 @@
             font-style: normal;
             font-weight: 500;
             line-height: 100%; /* 12px */
-            letter-spacing: 3px;
+            
           }
         }
       }
@@ -731,7 +732,7 @@
         font-style: normal;
         font-weight: 400;
         line-height: 100%; /* 16px */
-        letter-spacing: 4px;
+        
         position: relative;
         small {
           color: #040404;
@@ -740,7 +741,7 @@
           font-style: normal;
           font-weight: 400;
           line-height: 100%; /* 14px */
-          letter-spacing: 3.5px;
+          
           position: absolute;
           top: 90px;
           left: -100px;
@@ -780,7 +781,7 @@
           font-style: normal;
           font-weight: 400;
           line-height: 100%; /* 16px */
-          letter-spacing: 4px;
+          
           margin-bottom: 11px;
           width: 55%;
           text-align: right;
@@ -796,7 +797,7 @@
           font-style: normal;
           font-weight: 300;
           line-height: 100%;
-          letter-spacing: 3.25px;
+          
           width: 305px;
           margin: 0 0 11px auto;
           @media only screen and (max-width: 768px) {
