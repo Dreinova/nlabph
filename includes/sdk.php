@@ -13,6 +13,7 @@ class SDK
         if ($development) {
             $this->production = false;
         }
+        $this->infoGnrl = $this->gInfo();
     }
 
     public function reindexCache()
@@ -103,7 +104,16 @@ class SDK
         $palabras = $texts;
         return $palabras;
     }
-
+    function gInfo(){
+        if(isset($_SESSION[$this->language]['ginfo'])){
+            $gnrl = $_SESSION[$this->language]['ginfo'];
+		} else {
+            $result = $this->query("pages/45");                
+			$gnrl = $result;
+			$_SESSION[$this->language]['ginfo'] = $gnrl;
+		}
+		return $gnrl;
+	}
     function getLeads($id = "")
     {
         $result = $this->query("garcia-leads/$id");

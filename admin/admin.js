@@ -928,6 +928,7 @@ function setFormValues(formData) {
 
 // GET EQUIPOS WP
 async function fetchEquiposData(equipos) {
+  
   const equipoPromises = equipos.map(({ ID }) => {
     return query(`garcia-grupos`, `?idGroup=${ID}`).result.then(
       ({ title: { rendered }, acf: { precio_por_dia, max_discount } }) => {
@@ -1993,6 +1994,7 @@ async function getEquiposCotizacion() {
     } = responseEquipos;
     const primeraCategoria = categoria[0];
     const { name: categoriaName } = primeraCategoria;
+    console.log(categoriaName);
 
     // Array para almacenar promesas de consultas de elementos individuales
     const itemQueries = [];
@@ -2007,36 +2009,42 @@ async function getEquiposCotizacion() {
     let listaHTML = "";
     for (const [index, responsePromise] of itemResponses.entries()) {
       const result  = await responsePromise;
-      listaHTML += `<li><p>${result.acf.nombre_item}</p><small>x${list_items[index].items.cantidad}</small></li>`;
+      listaHTML += `<li><p>${result.acf.nombre_item.toLowerCase()}</p><small>x${list_items[index].items.cantidad}</small></li>`;
     }
     const descuento = parseFloat(item.descuento);
     const dias = parseFloat(item.dias);
-    const precioConDescuento =
+    let precioConDescuento =
       precio_por_dia[moneda] - (precio_por_dia[moneda] * descuento) / 100;
+      precioConDescuento = precioConDescuento * dias;
     const template = `
-      <details open>
-          <summary>  ${rendered}  <img src="images/arrow.svg" alt="arrow"></summary>
-          <div class="content">
-            <ul>
-              ${listaHTML}
-            </ul>
-              <div class="priceday">
-                  <h4 class="uppercase">resumen y descuento</h4>
-                  <label for="">Precio x día</label>
-                  <input readonly type="text" value="${formatToCurrency(
-                    precio_por_dia[moneda],
-                    moneda
-                  )}">
-                  <div class="discount">
-                      <label for="">Precio con descuento <strong>-${descuento}%</strong></label>
-                      <input readonly type="text" value="${formatToCurrency(
-                        precioConDescuento,
-                        moneda
-                      )}">
-                  </div>
-              </div>
-          </div>
-      </details>
+    <article class="single-equipo">
+    <span class="category">${categoriaName}</span>
+    <details open>
+        <summary>  ${rendered}  <img src="images/arrow.svg" alt="arrow"></summary>
+        <div class="content">
+          <ul>
+            ${listaHTML}
+          </ul>
+            <div class="priceday">
+                <label for="">Precio x día</label>
+                <input readonly type="text" value="${formatToCurrency(
+                  precio_por_dia[moneda],
+                  moneda
+                )}">
+                <label for="">Precio x ${dias > 1 ? `${Math.trunc(dias)} ${dias % 1 === 0 ? `días` : `días y medio`}`:`${Math.trunc(dias)} día`}</label>
+                <input readonly type="text" value="${formatToCurrency(
+                  precio_por_dia[moneda] * dias,
+                  moneda
+                )}">
+                    <label for="">Precio con descuento <strong>-${descuento}%</strong></label>
+                    <input readonly type="text" value="${formatToCurrency(
+                      precioConDescuento,
+                      moneda
+                    )}">
+            </div>
+        </div>
+    </details>
+    </article>
       `;
     equiposHTML += template;
   }
@@ -2113,3 +2121,23 @@ async function getEquiposCotizacion() {
 if (document.querySelector(".equipos .equipo")) {
   getEquiposCotizacion();
 }
+
+
+const gridContainer = document.getElementById('grid-container');
+const endMarker = document.getElementById('end-marker');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      // Intersection observed, you've reached the end
+      document.querySelector('.resumen').classList.add('absolute');
+      // Implement your logic here, like fetching more items or appending new content
+    } else {
+      // Entry is not intersecting, remove the class
+      document.querySelector('.resumen').classList.remove('absolute');
+    }
+  });
+});
+
+// Start observing the end marker
+observer.observe(endMarker);
