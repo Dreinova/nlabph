@@ -61,7 +61,7 @@ function convertDate($dateString)
     <img src="images/garcia.svg" alt="garcia">
     <img src="images/beyond.png" alt="beyond">
     <div class="right">
-        <h1>Cotización</h1>
+        <h1><?= $palabras[0] ?></h1>
         <h2><?= $_GET["cotizacionId"] ?>-<?= isset($price->acf->version) && $price->acf->version != "" ? $price->acf->version : "1" ?></h2>
         <h3>
             <?php
@@ -96,37 +96,37 @@ function convertDate($dateString)
 <div class="grid-container">
     <div class="left">
         <div class="grid-contact">
-            <h2>CLIENTE</h2>
+            <h2><?= $palabras[1] ?></h2>
             <span>
                 <input readonly type="text" value="<?= $productor ?>">
-                <label for="">Productor</label>
+                <label for=""><?= $palabras[2] ?></label>
             </span>
             <span>
                 <input readonly type="text" value="<?= $cargo_del_contacto ?>">
-                <label for="">Cargo del contacto</label>
+                <label for=""><?= $palabras[3] ?></label>
             </span>
             <span>
                 <input readonly type="text" value="<?= $project ?>">
-                <label for="">Proyecto</label>
+                <label for=""><?= $palabras[4] ?></label>
             </span>
             <span>
                 <input readonly type="text" value="<?= $telefono ?>">
-                <label for="">Teléfono</label>
+                <label for=""><?= $palabras[5] ?></label>
             </span>
             <span>
                 <input readonly type="text" value="<?= $dop ?>">
-                <label for="">DoP</label>
+                <label for=""><?= $palabras[6] ?></label>
             </span>
 
         </div>
-        <h4>CRONOGRAMA</h4>
+        <h4><?= $palabras[7] ?></h4>
         <div class="cronograma">
             <span>
-                <label for="">Inicio de rodaje</label>
+                <label for=""><?= $palabras[8] ?></label>
                 <?= convertDate($fechas_de_rodaje->desde) ?>
             </span>
             <span>
-                <label for="">Fin de rodaje</label>
+                <label for=""><?= $palabras[9] ?></label>
                 <?= convertDate($fechas_de_rodaje->hasta) ?>
             </span>
         </div>
@@ -136,7 +136,7 @@ function convertDate($dateString)
         </div> -->
         <?php if (isset($viajes)) { ?>
             <div class="viajes">
-                <h4>VIAJES</h4>
+                <h4><?= $palabras[10] ?></h4>
                 <?php
                 for ($i = 0; $i < count($viajes); $i++) {
                     $fecha_viaje = $viajes[$i]->fecha_viaje;
@@ -157,7 +157,7 @@ function convertDate($dateString)
         <?php } ?>
         <?php if (isset($dias_standby)) { ?>
             <div class="info-txt">
-                <h3 class="uppercase">stand by</h3>
+                <h3 class="uppercase"><?= $palabras[11] ?></h3>
                 <?php
                 for ($i = 0; $i < count($dias_standby); $i++) {
                     $count = $i + 1;
@@ -180,11 +180,11 @@ function convertDate($dateString)
             <p>POR FAVOR CONTEMPLAR SUFICIENTE TIEMPO PARA LA REVISION DEL EQUIPO EN NUESTRAS INSTALACIONES EL DIA DEL REGRESO DE EQUIPOS.</p>
         </div> -->
         <div class="equipos">
-            <h5>Listado de equipos <img src="images/down.png" alt="down" class="shake-vertical"></h5>
+            <h5><?= $palabras[13] ?> <img src="images/down.png" alt="down" class="shake-vertical"></h5>
             <div class="equipo">
             </div>
         </div>
-        <h6>¿Dudas?</h6>
+        <h6>¿<?= $palabras[17] ?>?</h6>
         <div class="sellers">
             <ul>
                 <li>
@@ -225,62 +225,19 @@ function convertDate($dateString)
         </div>
         <div class="politics">
             <details open>
-                <summary>RESPONSABILIDAD Y SEGURO <img src="images/arrow.svg" alt="arrow"> <small>LETRA PEQUEÑA</small>
+                <summary><?= $palabras[18] ?> <img src="images/arrow.svg" alt="arrow"> <small>LETRA PEQUEÑA</small>
                 </summary>
                 <div class="content">
 
-                    <p>El CLIENTE asume como una obligación adicional la custodia y cuidado del equipo entregado bajo
-                        este
-                        contrato
-                        y que permanezca en su posesión, de manera que cualquier daño al mismo será su responsabilidad
-                        completa,
-                        exclusiva y objetiva. El CLIENTE asumirá de inmediato el pago de los gastos generados por
-                        cualquier
-                        daño
-                        o
-                        avería del equipo, incluyendo los costos de un reemplazo temporal para cubrir los días en que el
-                        equipo
-                        esté
-                        fuera de servicio, el costo de adquirir un nuevo equipo, los gastos de reparación (esto aplica
-                        solo
-                        si
-                        el
-                        proceso de reparación no afecta la calidad del equipo), impuestos, flete, importación,
-                        transporte y
-                        costos
-                        similares derivados del daño o avería del equipo o de su reparación. El CLIENTE tendrá la
-                        obligación
-                        de
-                        asegurar el equipo alquilado en un seguro específico y a nombre de NEW LAB PHOTOGRAPHY S.A.S.,
-                        en el
-                        cual
-                        esté asegurado y sea beneficiario por una suma igual al valor de adquisición en el mercado en el
-                        momento
-                        del
-                        alquiler y durante el plazo del alquiler, incluyendo los días de transporte para la entrega y
-                        recepción.
-                        El
-                        mencionado seguro debe contratarse antes de la entrega del equipo por parte de NEW LAB
-                        PHOTOGRAPHY
-                        S.A.S., y
-                        por lo tanto, esta será una condición para que se realice la entrega. Si en el momento de la
-                        pérdida
-                        NEW
-                        LAB
-                        PHOTOGRAPHY S.A.S. posee un seguro que cubre el daño del equipo (lo cual no será su obligación),
-                        el
-                        CLIENTE
-                        pagará todos los valores que por cualquier motivo el asegurador no indemnice, sin que esto
-                        implique
-                        una
-                        renuncia a los derechos y acciones de NEW LAB PHOTOGRAPHY S.A.S. para efectos de subrogación.
-                    </p>
+                    <!-- <p>
+                    </p> -->
                 </div>
             </details>
             <details open>
-                <summary>CONDICIONES DE ALQUILER CONOCIDAS, ACEPTADAS Y ASUMIDAS POR EL CLIENTE <img src="images/arrow.svg" alt="arrow"></summary>
+                <summary><?= $palabras[19] ?><img src="images/arrow.svg" alt="arrow"></summary>
                 <div class="content">
-                    <p>* El CLIENTE designa y delega al PERSONAL CONTRATADO POR LA PRODUCCIÓN la recepción del equipo de
+                
+                        <p>* El CLIENTE designa y delega al PERSONAL CONTRATADO POR LA PRODUCCIÓN la recepción del equipo de
                         alquiler y
                         autoriza al delegado a firmar los documentos relacionados con el alquiler, como indicación de
                         aceptación. *
@@ -400,7 +357,7 @@ function convertDate($dateString)
                 </div>
             </details>
             <details open>
-                <summary>NORMAS APLICABLE Y ARBITRAJE <img src="images/arrow.svg" alt="arrow"></summary>
+                <summary><?= $palabras[20] ?><img src="images/arrow.svg" alt="arrow"></summary>
                 <div class="content">
                     <p>La relación legal contractual derivada de la aceptación de esta oferta se regirá por las normas
                         legales
@@ -434,10 +391,10 @@ function convertDate($dateString)
         <div class="resumen">
             <details open>
                 <summary>
-                    <h2>Resumen</h2> <img src="images/arrow.svg" alt="arrow">
+                    <h2><?= $palabras[21] ?></h2> <img src="images/arrow.svg" alt="arrow">
                 </summary>
                 <div class="subtotal">
-                    <label for="">Subtotal</label>
+                    <label for=""><?= $palabras[22] ?></label>
                     <input type="text" readonly value="<?= formatText($subtotal) ?>">
                 </div>
                 <div class="impuestos">
@@ -445,18 +402,18 @@ function convertDate($dateString)
                     <input type="text" readonly value="<?= formatText($iva) ?>">
                 </div>
                 <div class="total">
-                    <label for="">Total</label>
+                    <label for=""><?= $palabras[23] ?></label>
                     <input type="text" readonly value="<?= formatText($total) ?>">
                 </div>
 
             </details>
             <details open>
-                <summary> <strong>Formas de pago y descuentos adicionales</strong> <img src="images/arrow.svg" alt="arrow"></summary>
+                <summary> <strong><?= $palabras[24] ?></strong> <img src="images/arrow.svg" alt="arrow"></summary>
                 <ul class="options">
                     <?php for ($i = 0; $i < count($formas_de_pago); $i++) {
                         $forma_de_pago = $formas_de_pago[$i]; ?>
                         <li>
-                            <p class="option">OPCIÓN <?= $i + 1 ?></p>
+                            <p class="option"><?= $palabras[25] ?><?= $i + 1 ?></p>
                             <p class="title">
                                 <?= $forma_de_pago->descripcion ?>
                             </p>
@@ -482,7 +439,7 @@ function convertDate($dateString)
                                 </svg>
                             </p>
                             <a href="https://api.whatsapp.com/send/?phone=573104247964&text=He revisado la cotización que me enviaron y quiero avanzar con la opción <?= $i + 1 ?>.El número de la cotización es <?= $_GET["cotizacionId"] ?>-<?= isset($price->acf->version) && $price->acf->version != "" ? $price->acf->version : "1" ?>." target="_blank">
-                                ACEPTAR COTIZACIÓN
+                            <?= $palabras[26] ?>
                             </a>
                         </li>
                     <?php } ?>
