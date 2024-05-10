@@ -2152,12 +2152,12 @@ const observer = new IntersectionObserver(entries => {
 }
 
 
-
 window.addEventListener('resize',()=>{
-  if(window.innerWidth < 768){
-    document.querySelector("#logo").src = "images/iconMobile.svg";
-  }else{
-    document.querySelector("#logo").src = "images/garcia.svg";
-
+  if(document.querySelector("#logo")){
+    if(window.innerWidth < 768){
+      document.querySelector("#logo").src = "images/iconMobile.svg";
+    }else{
+      document.querySelector("#logo").src = "images/garcia.svg";
+    }
   }
 })
