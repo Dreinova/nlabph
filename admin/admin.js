@@ -2146,7 +2146,6 @@ const observer = new IntersectionObserver(entries => {
 });
 
 
-observer.observe(endMarker);
   if(endMarker){
     // Start observing the end marker
     observer.observe(endMarker);
