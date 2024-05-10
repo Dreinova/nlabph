@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_1" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 440.2 441.1">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #000;
+        stroke-width: 0px;
+      }
+    </style>
+  </defs>
+  <path id="Vector_3" data-name="Vector 3" class="cls-1" d="M440.2,0H1.1v36.3h439V0Z"/>
+  <path id="Vector_4" data-name="Vector 4" class="cls-1" d="M440.2,405.5H1.1v36.3h439v-36.3Z"/>
+  <path id="Vector_5" data-name="Vector 5" class="cls-1" d="M3.9,220.4C3.9,132.4,69.2,61.7,168,61.7s111.6,35.4,128.8,55.3l-55.3,56.2c-11.8-12.7-30.8-31.7-68.9-31.7s-78,34.5-78,78.9,32.7,79.8,80.7,79.8,51.7-9.1,59-14.5v-17.2h-49.9v-71.7h129.7v135.2c-32.7,22.7-70.8,48.1-146,48.1S3.9,309.3,3.9,220.4"/>
+  <path id="Vector_6" data-name="Vector 6" class="cls-1" d="M387.6,299.3c23.6,0,40.8,18.1,40.8,40.8s-17.2,39.9-40.8,39.9-40.8-18.1-40.8-39.9c0-21.8,17.2-40.8,40.8-40.8Z"/>
+</svg>

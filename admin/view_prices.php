@@ -56,16 +56,13 @@ function convertDate($dateString)
     let moneda = "<?= $moneda ?>";
 </script>
 <div class="allCotizacion-header">
-    <img src="images/garcia.svg" alt="garcia">
+    <img src="images/garcia.svg" alt="garcia" id="logo">
     <img src="images/beyond.svg" alt="beyond">
     <div class="right">
         <h1>
             <?= $palabras[0] ?>
         </h1>
-        <h2>
-            <?= $_GET["cotizacionId"] ?>-
-            <?= isset($price->acf->version) && $price->acf->version != "" ? $price->acf->version : "1" ?>
-        </h2>
+        <h2><?= $_GET["cotizacionId"] ?>-<?= isset($price->acf->version) && $price->acf->version != "" ? $price->acf->version : "1" ?></h2>
         <h3>
             <?php
             $dateString = $price->date;
@@ -98,125 +95,128 @@ function convertDate($dateString)
 </div>
 <div class="grid-container">
     <div class="left">
-        <section>
-            <div class="grid-contact">
-                <h2>
-                    <?= $palabras[1] ?>
-                </h2>
-                <span>
-                    <input readonly type="text" value="<?= $productor ?>">
-                    <label for="">
-                        <?= $palabras[2] ?>
-                    </label>
-                </span>
-                <span>
-                    <input readonly type="text" value="<?= $cargo_del_contacto ?>">
-                    <label for="">
-                        <?= $palabras[3] ?>
-                    </label>
-                </span>
-                <span>
-                    <input readonly type="text" value="<?= $project ?>">
-                    <label for="">
-                        <?= $palabras[4] ?>
-                    </label>
-                </span>
-                <span>
-                    <input readonly type="text" value="<?= $telefono ?>">
-                    <label for="">
-                        <?= $palabras[5] ?>
-                    </label>
-                </span>
-                <span>
-                    <input readonly type="text" value="<?= $dop ?>">
-                    <label for="">
-                        <?= $palabras[6] ?>
-                    </label>
-                </span>
-            </div>
-        </section>
-        <section>
-            <h4><?= $palabras[7] ?></h4>
-            <div class="cronograma">
-                <span>
-                    <label for="">
-                        <?= $palabras[8] ?>
-                    </label>
-                    <?= convertDate($fechas_de_rodaje->desde) ?>
-                </span>
-                <span>
-                    <label for="">
-                        <?= $palabras[9] ?>
-                    </label>
-                    <?= convertDate($fechas_de_rodaje->hasta) ?>
-                </span>
-            </div>
-        </section>
-        <!-- <div class="info-txt">
-            <h3 class="uppercase">entrega equipos</h3>
-            <p>Se entrega el equipo en las instalaciones de NEW LAB PHOTOGRAPHY SAS en la calle 108 # 16 - 60 apto 406 a la 1:00 pm. Momento en el cual se firma el acta de entrega.</p>
-        </div> -->
-        <?php if (isset($viajes) && $viajes) { ?>
-        <section>
-            <?php if (count($viajes) > 0) { ?>
-                <div class="viajes">
-                    <h4>
-                        <?= $palabras[10] ?>
-                    </h4>
-                    <?php
-                        for ($i = 0; $i < count($viajes); $i++) {
-                            $fecha_viaje = $viajes[$i]->fecha_viaje;
-                            $destino = $viajes[$i]->destino;
-                            $tipo_de_viaje = $viajes[$i]->tipo_de_viaje;
-                        ?>
-                    <div class="flex">
-                        <p>
-                            <?= $destino ?>
-                        </p>
-                        <div class="date">
-                            <strong>
-                                <?php
-                                $date = new DateTime($fecha_viaje);
+        <div class="break">
+            <section>
+                <div class="grid-contact">
+                    <h2>
+                        <?= $palabras[1] ?>
+                    </h2>
+                    <span>
+                        <input readonly type="text" value="<?= $productor ?>">
+                        <label for="">
+                            <?= $palabras[2] ?>
+                        </label>
+                    </span>
+                    <span>
+                        <input readonly type="text" value="<?= $cargo_del_contacto ?>">
+                        <label for="">
+                            <?= $palabras[3] ?>
+                        </label>
+                    </span>
+                    <span>
+                        <input readonly type="text" value="<?= $project ?>">
+                        <label for="">
+                            <?= $palabras[4] ?>
+                        </label>
+                    </span>
+                    <span>
+                        <input readonly type="text" value="<?= $telefono ?>">
+                        <label for="">
+                            <?= $palabras[5] ?>
+                        </label>
+                    </span>
+                    <span>
+                        <input readonly type="text" value="<?= $dop ?>">
+                        <label for="">
+                            <?= $palabras[6] ?>
+                        </label>
+                    </span>
+                </div>
+            </section>
+            <section>
+                <h4><?= $palabras[7] ?></h4>
+                <div class="cronograma">
+                    <span>
+                        <label for="">
+                            <?= $palabras[8] ?>
+                        </label>
+                        <?= convertDate($fechas_de_rodaje->desde) ?>
+                    </span>
+                    <span>
+                        <label for="">
+                            <?= $palabras[9] ?>
+                        </label>
+                        <?= convertDate($fechas_de_rodaje->hasta) ?>
+                    </span>
+                </div>
+            </section>
+            <!-- <div class="info-txt">
+                <h3 class="uppercase">entrega equipos</h3>
+                <p>Se entrega el equipo en las instalaciones de NEW LAB PHOTOGRAPHY SAS en la calle 108 # 16 - 60 apto 406 a la 1:00 pm. Momento en el cual se firma el acta de entrega.</p>
+            </div> -->
+            <?php if (isset($viajes) && $viajes) { ?>
+            <section>
+                <?php if (count($viajes) > 0) { ?>
+                    <div class="viajes">
+                        <h4>
+                            <?= $palabras[10] ?>
+                        </h4>
+                        <?php
+                            for ($i = 0; $i < count($viajes); $i++) {
+                                $fecha_viaje = $viajes[$i]->fecha_viaje;
+                                $destino = $viajes[$i]->destino;
+                                $tipo_de_viaje = $viajes[$i]->tipo_de_viaje;
+                            ?>
+                        <div class="flex">
+                            <p>
+                                <?= $destino ?>
+                            </p>
+                            <div class="date">
+                                <strong>
+                                    <?php
+                                    $date = new DateTime($fecha_viaje);
+                                    $monthName = $spanishMonth[$date->format('F')];
+                                    $day = $date->format('j');
+                                    $year = $date->format('Y');
+                                    echo "$day de $monthName del $year";
+                                    ?>
+                                </strong>
+                                <?php if ($tipo_de_viaje == "terrestre") { ?>
+                                <img src="images/terrestre.svg" alt="terrestre">
+                                <?php } else { ?>
+                                <img src="images/aereo.svg" alt="aereo">
+                                <?php } ?>
+                            </div>
+                        </div>
+                        <?php } ?>
+                    </div>
+                <?php } ?>
+            </section>
+            <?php } ?>
+            <?php if (isset($dias_standby) && $dias_standby) { ?>
+            <section>
+                <?php if (count($dias_standby) > 0) { ?>
+                    <div class="info-txt">
+                        <h3 class="uppercase">
+                            <?= $palabras[11] ?>
+                        </h3>
+                        <?php
+                            for ($i = 0; $i < count($dias_standby); $i++) {
+                                $count = $i + 1;
+                                $fecha = $dias_standby[$i]->fecha_stand_by;
+                                $date = new DateTime($fecha);
                                 $monthName = $spanishMonth[$date->format('F')];
                                 $day = $date->format('j');
                                 $year = $date->format('Y');
-                                echo "$day de $monthName del $year";
-                                ?>
-                            </strong>
-                            <?php if ($tipo_de_viaje == "terrestre") { ?>
-                            <img src="images/terrestre.svg" alt="terrestre">
-                            <?php } else { ?>
-                            <img src="images/aereo.svg" alt="aereo">
-                            <?php } ?>
-                        </div>
+                                echo "<p style='margin-bottom: 14px;'>Día de Stand by $count :  $day de $monthName del $year</p>";
+                            }
+                            ?>
                     </div>
-                    <?php } ?>
-                </div>
+                <?php } ?>
+            </section>
             <?php } ?>
-        </section>
-        <?php } ?>
-        <?php if (isset($dias_standby) && $dias_standby) { ?>
-        <section>
-            <?php if (count($dias_standby) > 0) { ?>
-                <div class="info-txt">
-                    <h3 class="uppercase">
-                        <?= $palabras[11] ?>
-                    </h3>
-                    <?php
-                        for ($i = 0; $i < count($dias_standby); $i++) {
-                            $count = $i + 1;
-                            $fecha = $dias_standby[$i]->fecha_stand_by;
-                            $date = new DateTime($fecha);
-                            $monthName = $spanishMonth[$date->format('F')];
-                            $day = $date->format('j');
-                            $year = $date->format('Y');
-                            echo "<p style='margin-bottom: 14px;'>Día de Stand by $count :  $day de $monthName del $year</p>";
-                        }
-                        ?>
-                </div>
-            <?php } ?>
-        </section>
-        <?php } ?>
+
+        </div>
         <!-- <div class="info-txt">
             <h3 class="uppercase">REGRESO EQUIPOS</h3>
             <p>Regreso y entrega de los equipos en la en las instalaciones de NEW LAB PHOTOGRAPHY SAS en la calle 108 # 16 -60 int 406 el día 20 de octubre de 2023 a la 2:00 pm. Momento en el cual se revisa el equipo y firma acta de recibido.</p>
@@ -225,52 +225,55 @@ function convertDate($dateString)
             <h3 class="uppercase">nota</h3>
             <p>POR FAVOR CONTEMPLAR SUFICIENTE TIEMPO PARA LA REVISION DEL EQUIPO EN NUESTRAS INSTALACIONES EL DIA DEL REGRESO DE EQUIPOS.</p>
         </div> -->
-        <div class="equipos">
-            <h3 class="uppercase">
-                <?= $palabras[13] ?>
-            </h3>
-            <div class="equipo">
+        <div class="break">
+            <div class="equipos">
+                <h3 class="uppercase">
+                    <?= $palabras[13] ?>
+                </h3>
+                <div class="equipo">
+                </div>
             </div>
         </div>
-        
-       <section>
-           <div class="politics">
-               <details open>
-                   <summary>
-                    <span>
-                    <?= $palabras[18] ?> 
-                    </span>
-                       <img src="images/arrow.svg" alt="arrow"> <small>LETRA PEQUEÑA</small>
-                   </summary>
-                   <div class="content">
-                   <?=$sdk->infoGnrl->acf->responsabilidad_y_seguro?>
-                   </div>
-               </details>
-               <details open>
-                   <summary>
-                    <span>
-                    <?= $palabras[19] ?>
-                    </span>
-                       <img src="images/arrow.svg" alt="arrow">
-                   </summary>
-                   <div class="content">
-                   <?=$sdk->infoGnrl->acf->condiciones_de_alquiler?>
-                   </div>
-               </details>
-               <details open>
-                   <summary>
-                    <span><?= $palabras[20] ?></span>
-                       <img src="images/arrow.svg" alt="arrow">
-                   </summary>
-                   <div class="content">
-                       <?=$sdk->infoGnrl->acf->normas_aplicable_y_arbitraje?>
-                   </div>
-               </details>
-           </div>
-       </section>
+        <div class="break">
+            <section>
+                <div class="politics">
+                    <details open>
+                        <summary>
+                         <span>
+                         <?= $palabras[18] ?> 
+                         </span>
+                            <img src="images/arrow.svg" alt="arrow"> <small>LETRA PEQUEÑA</small>
+                        </summary>
+                        <div class="content">
+                        <?=$sdk->infoGnrl->acf->responsabilidad_y_seguro?>
+                        </div>
+                    </details>
+                    <details open>
+                        <summary>
+                         <span>
+                         <?= $palabras[19] ?>
+                         </span>
+                            <img src="images/arrow.svg" alt="arrow">
+                        </summary>
+                        <div class="content">
+                        <?=$sdk->infoGnrl->acf->condiciones_de_alquiler?>
+                        </div>
+                    </details>
+                    <details open>
+                        <summary>
+                         <span><?= $palabras[20] ?></span>
+                            <img src="images/arrow.svg" alt="arrow">
+                        </summary>
+                        <div class="content">
+                            <?=$sdk->infoGnrl->acf->normas_aplicable_y_arbitraje?>
+                        </div>
+                    </details>
+                </div>
+            </section>
+        </div>
        
     </div>
-    <div class="right">
+    <div class="right break">
         <div class="resumen">
             <h3><?= $palabras[21] ?></h3>
             <div class="subtotal">
@@ -367,7 +370,8 @@ function convertDate($dateString)
     </div>
     <div id="end-marker"></div>
 </div>
-<div class="footer">
+
+<div class="footer break">
     <div class="sellers">
             <h6 class="uppercase">¿<?= $palabras[17] ?>?</h6>
             <ul>

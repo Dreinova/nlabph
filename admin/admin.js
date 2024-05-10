@@ -1872,6 +1872,12 @@ function removeElement(element) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  if(window.innerWidth < 768){
+    document.querySelector("#logo").src = "images/iconMobile.svg";
+  }else{
+    document.querySelector("#logo").src = "images/garcia.svg";
+
+  }
   if (document.querySelector("#vendedor")) {
     getSellers();
   }
@@ -2141,3 +2147,14 @@ const observer = new IntersectionObserver(entries => {
 
 // Start observing the end marker
 observer.observe(endMarker);
+
+
+
+window.addEventListener('resize',()=>{
+  if(window.innerWidth < 768){
+    document.querySelector("#logo").src = "images/iconMobile.svg";
+  }else{
+    document.querySelector("#logo").src = "images/garcia.svg";
+
+  }
+})
