@@ -808,21 +808,20 @@ async function queryWP(
     });
     query = { ...query, ...extraParams };
   }
-  
+
   const queryString = new URLSearchParams(query).toString();
   const url = `https://admin.nlabph.com/wp-json/wp/v2/${endpoint}?${queryString}`;
   const options = {
     method: method,
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     },
   };
   if (method === "POST" || method === "PUT") {
     options.body = JSON.stringify(body);
   }
-    const response = await fetch(url, options);
-    return await response.json();
-  
+  const response = await fetch(url, options);
+  return await response.json();
 }
 
 // GET ITEMS WP
@@ -928,7 +927,6 @@ function setFormValues(formData) {
 
 // GET EQUIPOS WP
 async function fetchEquiposData(equipos) {
-  
   const equipoPromises = equipos.map(({ ID }) => {
     return query(`garcia-grupos`, `?idGroup=${ID}`).result.then(
       ({ title: { rendered }, acf: { precio_por_dia, max_discount } }) => {
@@ -1872,12 +1870,12 @@ function removeElement(element) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  if(window.innerWidth < 768){
-    document.querySelector("#logo").src = "images/iconMobile.svg";
-  }else{
-    document.querySelector("#logo").src = "images/garcia.svg";
+  // if(window.innerWidth < 768){
+  //   document.querySelector("#logo").src = "images/iconMobile.svg";
+  // }else{
+  //   document.querySelector("#logo").src = "images/garcia.svg";
 
-  }
+  // }
   if (document.querySelector("#vendedor")) {
     getSellers();
   }
@@ -2014,14 +2012,16 @@ async function getEquiposCotizacion() {
     const itemResponses = await Promise.all(itemQueries);
     let listaHTML = "";
     for (const [index, responsePromise] of itemResponses.entries()) {
-      const result  = await responsePromise;
-      listaHTML += `<li><p>${result.acf.nombre_item.toLowerCase()}</p><small>x${list_items[index].items.cantidad}</small></li>`;
+      const result = await responsePromise;
+      listaHTML += `<li><p>${result.acf.nombre_item.toLowerCase()}</p><small>x${
+        list_items[index].items.cantidad
+      }</small></li>`;
     }
     const descuento = parseFloat(item.descuento);
     const dias = parseFloat(item.dias);
     let precioConDescuento =
       precio_por_dia[moneda] - (precio_por_dia[moneda] * descuento) / 100;
-      precioConDescuento = precioConDescuento * dias;
+    precioConDescuento = precioConDescuento * dias;
     const template = `
     <article class="single-equipo">
     <span class="category">${categoriaName}</span>
@@ -2037,7 +2037,13 @@ async function getEquiposCotizacion() {
                   precio_por_dia[moneda],
                   moneda
                 )}">
-                <label for="">Precio x ${dias > 1 ? `${Math.trunc(dias)} ${dias % 1 === 0 ? `días` : `días y medio`}`:`${Math.trunc(dias)} día`}</label>
+                <label for="">Precio x ${
+                  dias > 1
+                    ? `${Math.trunc(dias)} ${
+                        dias % 1 === 0 ? `días` : `días y medio`
+                      }`
+                    : `${Math.trunc(dias)} día`
+                }</label>
                 <input readonly type="text" value="${formatToCurrency(
                   precio_por_dia[moneda] * dias,
                   moneda
@@ -2128,36 +2134,33 @@ if (document.querySelector(".equipos .equipo")) {
   getEquiposCotizacion();
 }
 
+const gridContainer = document.getElementById("grid-container");
+const endMarker = document.getElementById("end-marker");
 
-const gridContainer = document.getElementById('grid-container');
-const endMarker = document.getElementById('end-marker');
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
     if (entry.isIntersecting) {
       // Intersection observed, you've reached the end
-      document.querySelector('.resumen').classList.add('absolute');
+      document.querySelector(".resumen").classList.add("absolute");
       // Implement your logic here, like fetching more items or appending new content
     } else {
       // Entry is not intersecting, remove the class
-      document.querySelector('.resumen').classList.remove('absolute');
+      document.querySelector(".resumen").classList.remove("absolute");
     }
   });
 });
 
-
-  if(endMarker){
-    // Start observing the end marker
-    observer.observe(endMarker);
+if (endMarker) {
+  // Start observing the end marker
+  observer.observe(endMarker);
 }
 
-
-window.addEventListener('resize',()=>{
-  if(document.querySelector("#logo")){
-    if(window.innerWidth < 768){
+window.addEventListener("resize", () => {
+  if (document.querySelector("#logo")) {
+    if (window.innerWidth < 768) {
       document.querySelector("#logo").src = "images/iconMobile.svg";
-    }else{
+    } else {
       document.querySelector("#logo").src = "images/garcia.svg";
     }
   }
-})
+});
