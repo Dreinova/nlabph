@@ -3,8 +3,10 @@ $bodyClass = "allCotizacion";
 $title = "Cotizacion #" . $_GET["cotizacionId"];
 include 'includes/head.php'; ?>
 <?php
+    
     $price = $sdk->getPrice($_GET["cotizacionId"]);
     $palabras = $sdk->getPalabras($price->acf->idioma_g);
+    $textos = $sdk->gInfo($price->acf->idioma_g);
     $cargo_del_contacto = $price->acf->cargo_del_contacto;
     $dias_standby = $price->acf->dias_standby;
     $dop = $price->acf->dop;
@@ -54,6 +56,7 @@ function convertDate($dateString)
     let idCotizacion = <?= $_GET["cotizacionId"] ?>;
     let equiposList = <?= json_encode($equipos) ?>;
     let moneda = "<?= $moneda ?>";
+    let palabras = <?= json_encode($palabras) ?>;
 </script>
 <div class="allCotizacion-header">
     <img src="images/garcia.svg" alt="garcia" id="logo">
@@ -245,7 +248,7 @@ function convertDate($dateString)
                             <img src="images/arrow.svg" alt="arrow"> <small>LETRA PEQUEÑA</small>
                         </summary>
                         <div class="content">
-                        <?=$sdk->infoGnrl->acf->responsabilidad_y_seguro?>
+                        <?= $textos->acf->responsabilidad_y_seguro?>
                         </div>
                     </details>
                     <details open>
@@ -256,7 +259,7 @@ function convertDate($dateString)
                             <img src="images/arrow.svg" alt="arrow">
                         </summary>
                         <div class="content">
-                        <?=$sdk->infoGnrl->acf->condiciones_de_alquiler?>
+                        <?= $textos->acf->condiciones_de_alquiler?>
                         </div>
                     </details>
                     <details open>
@@ -265,7 +268,7 @@ function convertDate($dateString)
                             <img src="images/arrow.svg" alt="arrow">
                         </summary>
                         <div class="content">
-                            <?=$sdk->infoGnrl->acf->normas_aplicable_y_arbitraje?>
+                            <?= $textos->acf->normas_aplicable_y_arbitraje?>
                         </div>
                     </details>
                 </div>

@@ -13,7 +13,6 @@ class SDK
         if ($development) {
             $this->production = false;
         }
-        $this->infoGnrl = $this->gInfo();
     }
 
     public function reindexCache()
@@ -104,15 +103,33 @@ class SDK
         $palabras = $texts;
         return $palabras;
     }
-    function gInfo(){
-        if(isset($_SESSION[$this->language]['ginfo'])){
-            $gnrl = $_SESSION[$this->language]['ginfo'];
-		} else {
-            $result = $this->query("pages/45");                
-			$gnrl = $result;
-			$_SESSION[$this->language]['ginfo'] = $gnrl;
-		}
+    function gInfo($lang){
+        switch ($lang) {
+            case 'es':
+                $result = $this->query("pages/45");                
+                $gnrl = $result;
 		return $gnrl;
+
+                break;
+            case 'en':
+                $result = $this->query("pages/1898");                
+                $gnrl = $result;
+		return $gnrl;
+
+                break;
+            case 'de':
+                $result = $this->query("pages/1900");                
+                $gnrl = $result;
+		return $gnrl;
+
+                break;
+            default:
+                $result = $this->query("pages/45");                
+                $gnrl = $result;
+		return $gnrl;
+
+                break;
+        }
 	}
     function getLeads($id = "")
     {
