@@ -4,6 +4,9 @@ $title = "Cotizacion #" . $_GET["cotizacionId"];
 include 'includes/head.php'; ?>
 <?php
 
+var_dump($price->acf->idioma_g);
+var_dump($price->acf->idioma);
+
 $price = $sdk->getPrice($_GET["cotizacionId"]);
 $palabras = $sdk->getPalabras($price->acf->idioma_g);
 $textos = $sdk->gInfo($price->acf->idioma_g);

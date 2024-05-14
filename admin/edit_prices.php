@@ -149,6 +149,7 @@ include 'includes/head.php'; ?>
         <input type="hidden" name="realtotalStandbyDays" id="realtotalStandbyDays" value="0">
         <input type="hidden" name="totaltravelsDays" id="totaltravelsDays" value="0">
         <input type="hidden" name="realtotaltravelsDays" id="realtotaltravelsDays" value="0">
+        <input type="hidden" name="lead_relacionado" id="lead_relacionado" value="0">
 
     </div>
     <hr>
