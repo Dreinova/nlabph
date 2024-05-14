@@ -121,9 +121,8 @@ function convertDate($dateString)
             $day = $date->format('j');
             $year = $date->format('Y');
             // Output the converted date and time
-            echo $months[$idioma]['F'];
-            echo $months[$idioma]['j'];
-            echo $months[$idioma]['Y'];
+            echo "$monthName $day ・ $year";
+            
             ?>
         </h3>
     </div>
