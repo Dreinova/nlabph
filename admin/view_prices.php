@@ -117,7 +117,7 @@ function convertDate($dateString)
                 )
             );
 
-            $monthName = $months[$date->format('F')];
+            $monthName = $months[$idioma][$date->format('F')];
             $day = $date->format('j');
             $year = $date->format('Y');
             // Output the converted date and time
