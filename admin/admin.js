@@ -2034,23 +2034,26 @@ async function getEquiposCotizacion() {
             ${listaHTML}
           </ul>
             <div class="priceday">
-                <label for="">Precio x día</label>
+                <h4 class="uppercase">${palabras[14]}</h4>
+                <label for=""> ${palabras[15]}</label>
                 <input readonly type="text" value="${formatToCurrency(
                   precio_por_dia[moneda],
                   moneda
                 )}">
-                <label for="">Precio x ${
-                  dias > 1
-                    ? `${Math.trunc(dias)} ${
-                        dias % 1 === 0 ? `días` : `días y medio`
-                      }`
-                    : `${Math.trunc(dias)} día`
-                }</label>
+                <label for="">${palabras[27]} x ${
+      dias > 1
+        ? `${Math.trunc(dias)} ${
+            dias % 1 === 0 ? `${palabras[28]}` : `${palabras[29]}`
+          }`
+        : `${Math.trunc(dias)} día`
+    }</label>
                 <input readonly type="text" value="${formatToCurrency(
                   precio_por_dia[moneda] * dias,
                   moneda
                 )}">
-                    <label for="">Precio con descuento <strong>-${descuento}%</strong></label>
+                    <label for="">${
+                      palabras[16]
+                    } <strong>-${descuento}%</strong></label>
                     <input readonly type="text" value="${formatToCurrency(
                       precioConDescuento,
                       moneda

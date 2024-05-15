@@ -123,7 +123,7 @@ function convertDate($dateString)
             $year = $date->format('Y');
             // Output the converted date and time
             echo "$monthName $day ・ $year";
-            
+
             ?>
         </h3>
     </div>
@@ -210,10 +210,10 @@ function convertDate($dateString)
                                         <strong>
                                             <?php
                                             $date = new DateTime($fecha_viaje);
-                                            $monthName = $spanishMonth[$date->format('F')];
+                                            $monthName = $months[$idioma][$date->format('F')];
                                             $day = $date->format('j');
                                             $year = $date->format('Y');
-                                            echo "$day de $monthName del $year";
+                                            echo "$monthName ・ $day ・ $year";
                                             ?>
                                         </strong>
                                         <?php if ($tipo_de_viaje == "terrestre") { ?>
@@ -240,10 +240,10 @@ function convertDate($dateString)
                                 $count = $i + 1;
                                 $fecha = $dias_standby[$i]->fecha_stand_by;
                                 $date = new DateTime($fecha);
-                                $monthName = $spanishMonth[$date->format('F')];
+                                $monthName = $months[$idioma][$date->format('F')];
                                 $day = $date->format('j');
                                 $year = $date->format('Y');
-                                echo "<p style='margin-bottom: 14px;'>Día de Stand by $count :  $day de $monthName del $year</p>";
+                                echo "<p style='margin-bottom: 14px;'>{$palabras[12]} $count : $monthName  ・ $day  ・ $year</p>";
                             }
                             ?>
                         </div>
@@ -318,7 +318,7 @@ function convertDate($dateString)
                 <input type="text" readonly value="<?= formatText($subtotal) ?>">
             </div>
             <div class="impuestos">
-                <label for="">IVA</label>
+                <label for="" class="uppercase"><?= $palabras[30] ?></label>
                 <input type="text" readonly value="<?= formatText($iva) ?>">
             </div>
             <div class="total">
