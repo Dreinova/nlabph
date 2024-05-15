@@ -1187,7 +1187,7 @@ function getSinglePrice(idPrice) {
           total,
           totaldays,
           version,
-          vendedor: vendedor[0].ID,
+          vendedor: vendedor ? vendedor[0].ID : "",
         };
 
         setFormValues(formData);
@@ -1416,7 +1416,7 @@ if (miFormulario) {
         telefono: resultadoFinal.phone,
         total: resultadoFinal.total,
         totaldays: resultadoFinal.totaldays,
-        version: "1",
+        version: parseInt(resultadoFinal.version) + 1,
         vendedor: resultadoFinal.vendedor,
         viajes: viajes,
       },
@@ -1426,26 +1426,26 @@ if (miFormulario) {
 
     if (document.getElementById("estado").value == "enviada") {
       result.then(async (response) => {
-        const requestOptions = {
-          method: "POST",
-          body: JSON.stringify(newData),
-        };
-        const makeWebHook = await fetch(
-          "https://hook.us1.make.com/zw537mheu5q4wlxuoeqpejqi6uuwseik",
-          requestOptions
-        );
-        const makeWebHookResponse = await makeWebHook.text();
-        const sendEmail = await fetch(
-          `https://nlabph.com/cotizaciones/s/sendEmail/?correo=${resultadoFinal.email}&idcot=${response.id}`
-        );
-        const sendEmailData = await sendEmail.text();
-        console.log({ makeWebHookResponse, sendEmailData, response });
+        // const requestOptions = {
+        //   method: "POST",
+        //   body: JSON.stringify(newData),
+        // };
+        // const makeWebHook = await fetch(
+        //   "https://hook.us1.make.com/zw537mheu5q4wlxuoeqpejqi6uuwseik",
+        //   requestOptions
+        // );
+        // const makeWebHookResponse = await makeWebHook.text();
+        // const sendEmail = await fetch(
+        //   `https://nlabph.com/cotizaciones/s/sendEmail/?correo=${resultadoFinal.email}&idcot=${response.id}`
+        // );
+        // const sendEmailData = await sendEmail.text();
+        // console.log({ makeWebHookResponse, sendEmailData, response });
       });
     }
 
     result.finally(() => {
       miFormulario.classList.remove("loading");
-      location.href = "/cotizaciones/admin/listado-cotizaciones";
+      // location.href = "/cotizaciones/admin/listado-cotizaciones";
     });
   });
 }
